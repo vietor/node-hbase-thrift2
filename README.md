@@ -4,7 +4,7 @@ node-hbase-thrift2
 [![NPM Version][npm-image]][npm-url]
 [![NPM Downloads][downloads-image]][downloads-url]
 
-Yet another HBase thrift2 client.
+Yet another HBase thrift2 client. Reinforcement the **Reconnect** support.
 
 # Installation
 
@@ -57,9 +57,6 @@ get: {
 }
 ```
 
-> HBase.Int64()
->> create [node-int64](https://github.com/broofa/node-int64/) instance
-
 ## 3. Put or Update columns value in a row
 
 ```javascript
@@ -74,6 +71,9 @@ hbaseClient.put('table', put, function(err){
         console.log('put is successfully');
 });
 ```
+
+> HBase.Int64()
+>> Create [node-int64](https://github.com/broofa/node-int64/) instance
 
 ## 4. Increment columns value in a row
 
