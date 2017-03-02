@@ -23,7 +23,6 @@
   "files": [
     "LICENSE",
     "README.md",
-    "HISTORY.md",
     "index.js",
     "lib/",
     "gen-nodejs"
