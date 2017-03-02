@@ -44,7 +44,7 @@ hbaseClient.get('table', get, function(err,data){
 ```
 
 ```sh
-{
+get: {
     row: 'rowkey',
     columnValues: [
         {
