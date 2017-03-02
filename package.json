@@ -1,0 +1,40 @@
+{
+    "name": "node-hbase-thrift2",
+    "version": "0.9.0",
+    "description": "Yet another HBase thrift2 client",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git://github.com/vietor/node-hbase-thrift2.git"
+    },
+    "keywords": [
+        "HBase",
+        "thrift",
+        "thrift2"
+    ],
+    "author": "Vietor Liu",
+    "license": "ISC",
+    "engines": {
+        "node": ">= 0.10.0"
+    },
+    "files": [
+        "LICENSE",
+        "README.md",
+        "HISTORY.md",
+        "index.js",
+        "lib/",
+        "gen-nodejs"
+    ],
+    "bugs": {
+        "url": "https://github.com/vietor/node-hbase-thrift2/issues"
+    },
+    "homepage": "https://github.com/vietor/node-hbase-thrift2#readme",
+    "dependencies": {
+        "lodash": "^4.17.4",
+        "node-int64": "^0.4.0",
+        "thrift": "^0.10.0"
+    }
+}
