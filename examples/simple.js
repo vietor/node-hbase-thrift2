@@ -2,7 +2,8 @@ var async = require('async'),
     HBase = require('../');
 
 var config = {
-    hosts: ['master'],
+    debug: true,
+    hosts: ['hbase-thrift2-server'],
     port: 9090
 };
 
@@ -20,6 +21,7 @@ function doPut(callback) {
     put.add('f3', 'q2', '2');
     put.add('f3', 'q3', '3', 1);
     put.add('f3', 'q3', '4', 2);
+    put.add('f3', 'q4', HBase.Int64(12));
 
     hbaseClient.put(table, put, function(err) {
         if (err)
@@ -58,7 +60,7 @@ function doGet(callback) {
 function doDel(callback) {
     var del = HBase.Del(row);
 
-    hbaseClient.get(table, del, function(err, data) {
+    hbaseClient.del(table, del, function(err, data) {
         if (err)
             console.log('del error:', err);
         else
@@ -79,6 +81,9 @@ async.waterfall([
     },
     function(nextcall) {
         doDel(nextcall);
+    },
+    function(nextcall) {
+        doGet(nextcall);
     }
 ], function() {
     process.exit(1);
