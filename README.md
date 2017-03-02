@@ -6,6 +6,18 @@ node-hbase-thrift2
 
 Yet another HBase thrift2 client.
 
+# Installation
+
+```sh
+$ npm install node-hbase-thrift2
+```
+
+# Usage
+
+```js
+var HBase = require('node-hbase-thrift2')
+```
+
 
 # License
 
