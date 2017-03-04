@@ -4,7 +4,7 @@ node-hbase-thrift2
 [![NPM Version][npm-image]][npm-url]
 [![NPM Downloads][downloads-image]][downloads-url]
 
-Yet another HBase thrift2 client.
+Yet another NodeJS HBase thrift2 client. Reinforcement the Reconnect support.
 
 # Installation
 
@@ -86,6 +86,20 @@ hbaseClient.inc('table', inc, function(err, data){
     else
         console.log('inc:', data);
 });
+```
+
+```sh
+inc: {
+    row: 'rowkey',
+    columnValues: [
+        {
+            family: 'family',
+            qualifier: 'qualifier',
+            value: <Buffer 00 00 00 00 00 00 00 01>,
+            timestamp: 1488469442863
+        }
+    ]
+}
 ```
 
 ## 5. Delete some columns value or a row
