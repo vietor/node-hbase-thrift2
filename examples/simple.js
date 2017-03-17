@@ -45,6 +45,19 @@ function doInc(callback) {
     });
 }
 
+function doInc2(callback) {
+    var inc = HBase.Inc(row);
+    inc.add('f2', 'q2', 2);
+
+    hbaseClient.inc(table, inc, function(err, data) {
+        if (err)
+            console.log('inc2 error:', err);
+        else
+            console.log('inc2 data:', data);
+        callback();
+    });
+}
+
 function doGet(callback) {
     var get = HBase.Get(row);
 
@@ -75,6 +88,9 @@ async.waterfall([
     },
     function(nextcall) {
         doInc(nextcall);
+    },
+    function(nextcall) {
+        doInc2(nextcall);
     },
     function(nextcall) {
         doGet(nextcall);
