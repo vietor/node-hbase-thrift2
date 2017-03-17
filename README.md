@@ -80,6 +80,7 @@ hbaseClient.put('table', put, function(err){
 ```javascript
 var inc = HBase.Inc('rowkey');
 inc.add('family', 'qualifier');
+inc.add('family', 'qualifier2', 2);
 hbaseClient.inc('table', inc, function(err, data){
     if(err)
         console.log('error:', err);
@@ -96,6 +97,12 @@ inc: {
             family: 'family',
             qualifier: 'qualifier',
             value: <Buffer 00 00 00 00 00 00 00 01>,
+            timestamp: 1488469442863
+        },
+        {
+            family: 'family',
+            qualifier: 'qualifier2',
+            value: <Buffer 00 00 00 00 00 00 00 02>,
             timestamp: 1488469442863
         }
     ]
