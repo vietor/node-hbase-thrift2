@@ -1,6 +1,6 @@
 {
   "name": "node-hbase-thrift2",
-  "version": "0.9.4",
+  "version": "0.9.5",
   "description": "Yet another HBase thrift2 client",
   "main": "index.js",
   "scripts": {
@@ -32,11 +32,11 @@
   },
   "homepage": "https://github.com/vietor/node-hbase-thrift2#readme",
   "dependencies": {
+    "async": "^2.1.5",
     "lodash": "^4.17.4",
     "node-int64": "^0.4.0",
     "thrift": "^0.10.0"
   },
   "devDependencies": {
-    "async": "^2.1.5"
   }
 }
