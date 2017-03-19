@@ -29,11 +29,9 @@ function doPut(callback) {
 }
 
 function doScan(callback) {
-    var scan = HBase.Scan();
+    var scan = HBase.Scan('rowkey-2','rowkey-25');
     scan.add('f1');
     scan.add('f2');
-    scan.setStartRow('rowkey-2');
-    scan.setStopRow('rowkey-25');
     hbaseClient.scan(table, scan, 10, function(err, rows) {
         if (err)
             console.log('scan error:', err);
