@@ -127,23 +127,26 @@ hbaseClient.del('table', del, function(err){
 ## 6. Scan some rows
 
 ```javascript
+// scan number of rows
 var numRows = 10;
 var scan = HBase.Scan('startrow');
 scan.add('family'); // or
 scan.add('family', 'qualifier'); // or
 scan.add('family', 'qualifier', 1); // has timestamp
-// scan number of rows
 hbaseClient.scan('table', scan, numRows, function(err, rows){
     if(err)
         console.log('error:', err);
     else
         console.log('scan has', rows.length);
 });
-// scan each batch rows
-hbaseClient.scanEach('table', scan, numRows, function(rows, next) {
-    console.log('scanEach:', rows.length);
+
+// scan all rows
+var batchRows = 10;
+var scanAll = HBase.Scan();
+hbaseClient.scanEach('table', scanAll, batchRows, function(rows, next) {
+    console.log('scanEach once:', rows.length);
     next(null);
-}, function(err, rows){
+}, function(err){
     if(err)
         console.log('error:', err);
     else
