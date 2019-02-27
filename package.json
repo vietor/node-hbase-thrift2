@@ -34,7 +34,6 @@
   "dependencies": {
     "async": "^2.1.5",
     "lodash": "^4.17.4",
-    "node-int64": "^0.4.0",
     "thrift": "^0.10.0"
   },
   "devDependencies": {
