@@ -3,7 +3,7 @@ var async = require('async'),
 
 var config = {
     debug: true,
-    hosts: ['hbase-thrift2-server'],
+    hosts: ['192.168.136.9'],
     port: 9090
 };
 

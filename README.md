@@ -143,7 +143,7 @@ hbaseClient.scan('table', scan, numRows, function(err, rows){
 // scan all rows
 var batchRows = 10;
 var scanAll = HBase.Scan();
-hbaseClient.scanEach('table', scanAll, batchRows, function(rows, next) {
+hbaseClient.scanForEach('table', scanAll, batchRows, function(rows, next) {
     console.log('scanEach once:', rows.length);
     next(null); // interrupt when next(err)
 }, function(err){

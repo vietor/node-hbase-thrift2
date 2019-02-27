@@ -1,4 +1,6 @@
-var async = require('async'),
+var util = require('util');
+var _ = require('lodash'),
+    async = require('async'),
     HBase = require('../');
 
 var config = {
@@ -29,25 +31,40 @@ function doPut(callback) {
 }
 
 function doScan(callback) {
-    var scan = HBase.Scan('rowkey-2','rowkey-25');
+    var scan = HBase.Scan('rowkey-2', 'rowkey-25');
     scan.add('f1');
     scan.add('f2');
-    hbaseClient.scan(table, scan, 10, function(err, rows) {
+    hbaseClient.scan(table, scan, 3, function(err, rows) {
         if (err)
             console.log('scan error:', err);
         else
-            console.log('scan result:', rows.length);
+            console.log('scan result:', util.inspect(rows, false, 100));
         callback();
     });
 }
 
-function doScanEach(callback) {
+function doScanFilter(callback) {
+    var scan = HBase.Scan();
+    scan.setFilterString("SingleColumnValueFilter('f1','n',>,'binary:30') AND SingleColumnValueFilter('f1','n',<,'binary:32')");
+    hbaseClient.scan(table, scan, 3, function(err, rows) {
+        if (err)
+            console.log('scan filter error:', err);
+        else
+            console.log('scan filter result:', util.inspect(rows, false, 100));
+        callback();
+    });
+}
+
+function doScanForEach(callback) {
     var idx = 0;
     var scan = HBase.Scan();
     scan.add('f1');
     scan.add('f2');
-    hbaseClient.scanEach(table, scan, 10, function(rows, next) {
-        console.log('scanEach:', ++idx, rows.length);
+    hbaseClient.scanForEach(table, scan, 10, function(rows, next) {
+        console.log('scanForEach:', ++idx);
+        _.each(rows, function(row) {
+            console.log(' row: ' + row.row);
+        });
         next(null);
     }, function(err) {
         if (err)
@@ -66,7 +83,10 @@ async.waterfall([
         doScan(nextcall);
     },
     function(nextcall) {
-        doScanEach(nextcall);
+        doScanFilter(nextcall);
+    },
+    function(nextcall) {
+        doScanForEach(nextcall);
     }
 ], function() {
     process.exit(1);
